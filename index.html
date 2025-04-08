@@ -5,8 +5,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Screen</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Animated color bomb */
+        body::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 50px;
+            background: radial-gradient(circle, #ff9a9e, #fad0c4, #fbc2eb, #a18cd1, #fbc2eb);
+            border-radius: 50%;
+            animation: dropBomb 3s ease-in-out infinite, explodeBomb 3s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes dropBomb {
+            0% {
+                top: -50%;
+                opacity: 1;
+            }
+            50% {
+                top: 50%;
+                opacity: 1;
+            }
+            51% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+
+        @keyframes explodeBomb {
+            50% {
+                width: 50px;
+                height: 50px;
+                opacity: 0;
+            }
+            51% {
+                width: 100vw;
+                height: 100vh;
+                opacity: 1;
+            }
+            100% {
+                width: 100vw;
+                height: 100vh;
+                opacity: 0;
+            }
+        }
+    </style>
 </head>
-<body class="bg-gray-100 flex items-center justify-center h-screen">
+<body class="bg-gray-100 flex items-center justify-center h-screen relative">
     <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
         <h2 class="text-2xl font-bold text-center mb-6">Sign In</h2>
         <form action="#" method="POST" class="space-y-4">
