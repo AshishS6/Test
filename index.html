@@ -6,58 +6,87 @@
     <title>Login Screen</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Animated color bomb */
-        body::before {
+        /* Multiple small explosions */
+        body {
+            position: relative;
+            overflow: hidden;
+        }
+
+        body::before,
+        body::after {
             content: '';
             position: absolute;
-            top: -50%;
-            left: 50%;
-            transform: translateX(-50%);
             width: 50px;
             height: 50px;
-            background: radial-gradient(circle, #ff9a9e, #fad0c4, #fbc2eb, #a18cd1, #fbc2eb);
+            background: radial-gradient(circle, #ff0000, #ff7300, #ffeb00, #00ff00, #00ffff, #0000ff, #ff00ff);
             border-radius: 50%;
-            animation: dropBomb 3s ease-in-out infinite, explodeBomb 3s ease-in-out infinite;
+            animation: smallExplosion 3s ease-in-out infinite;
             z-index: -1;
         }
 
-        @keyframes dropBomb {
+        body::before {
+            top: 20%;
+            left: 30%;
+            animation-delay: 0s;
+        }
+
+        body::after {
+            top: 60%;
+            left: 70%;
+            animation-delay: 1.5s;
+        }
+
+        @keyframes smallExplosion {
             0% {
-                top: -50%;
+                transform: scale(0.5);
                 opacity: 1;
             }
             50% {
-                top: 50%;
-                opacity: 1;
-            }
-            51% {
-                opacity: 0;
+                transform: scale(2);
+                opacity: 0.8;
             }
             100% {
+                transform: scale(3);
                 opacity: 0;
             }
         }
 
-        @keyframes explodeBomb {
-            50% {
-                width: 50px;
-                height: 50px;
-                opacity: 0;
-            }
-            51% {
-                width: 100vw;
-                height: 100vh;
-                opacity: 1;
-            }
-            100% {
-                width: 100vw;
-                height: 100vh;
-                opacity: 0;
-            }
+        /* Additional explosions */
+        .explosion {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: radial-gradient(circle, #ff0000, #ff7300, #ffeb00, #00ff00, #00ffff, #0000ff, #ff00ff);
+            border-radius: 50%;
+            animation: smallExplosion 3s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        .explosion:nth-child(1) {
+            top: 10%;
+            left: 80%;
+            animation-delay: 0.5s;
+        }
+
+        .explosion:nth-child(2) {
+            top: 40%;
+            left: 20%;
+            animation-delay: 1s;
+        }
+
+        .explosion:nth-child(3) {
+            top: 70%;
+            left: 50%;
+            animation-delay: 2s;
         }
     </style>
 </head>
 <body class="bg-gray-100 flex items-center justify-center h-screen relative">
+    <!-- Small explosions -->
+    <div class="explosion"></div>
+    <div class="explosion"></div>
+    <div class="explosion"></div>
+
     <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
         <h2 class="text-2xl font-bold text-center mb-6">Sign In</h2>
         <form action="#" method="POST" class="space-y-4">
